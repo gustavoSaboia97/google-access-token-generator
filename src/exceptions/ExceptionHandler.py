@@ -16,5 +16,5 @@ class ExceptionHandler:
         return Response(error_json, status=exception.status_code)
 
     def generic_exception(self, exception: Exception):
-        log.error(f"[API ERROR] Error during request process {str(exception)}")
+        log.error(f"[API UNKOWN ERROR] Error during request process {str(exception)}")
         return Response(str(exception), status=500)

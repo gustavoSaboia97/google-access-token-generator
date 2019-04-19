@@ -5,6 +5,8 @@ log = get_logger()
 
 
 def validate_to_refresh_token(app_data):
+    if app_data is None:
+        raise CannotBeBlankException("body")
     if "client_id" not in app_data:
         raise CannotBeBlankException("client_id")
     if "client_secret" not in app_data:
