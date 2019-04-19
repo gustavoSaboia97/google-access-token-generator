@@ -13,8 +13,6 @@ class GoogleClient:
     def request_refresh_token_and_access_token(self, app_data: dict) -> dict:
         log.info(f"[GOOGLE CLIENT - REFRESH TOKEN] Requesting data to get ACCESS_TOKEN and REFRESH_TOKEN "
                  f"{GOOGLE_TOKEN_ENDPOINT_QUERY_STRING}")
-        app_data["grant_type"] = "authorization_code"
-        app_data["access_type"] = "offline"
         response = requests.post(GOOGLE_TOKEN_ENDPOINT_QUERY_STRING, headers=GOOGLE_REQUEST_HEADER, data=app_data)
 
         if response.status_code != 200:

@@ -13,11 +13,15 @@ class GoogleBusiness:
     def generate_refresh_token_and_access_token(self, app_data: dict) -> dict:
         log.info(f"[GOOGLE BUSINESS - REFRESH TOKEN] Validating necessary data with json {app_data}")
         validate_to_refresh_token(app_data)
+        app_data["grant_type"] = "authorization_code"
+        app_data["access_type"] = "offline"
         json_repose = self.__client.request_refresh_token_and_access_token(app_data)
         return json_repose
 
     def generate_access_token(self, app_data: dict) -> dict:
         log.info(f"[GOOGLE BUSINESS - ACCCESS TOKEN] Validating necessary data with json {app_data}")
         validate_to_access_token(app_data)
+        app_data["grant_type"] = "authorization_code"
+        app_data["access_type"] = "offline"
         json_repose = self.__client.request_access_token(app_data)
         return json_repose

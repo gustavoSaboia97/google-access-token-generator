@@ -1,4 +1,4 @@
-from src.exceptions.exceptions import CannotBeBlankException
+from src.exceptions.exceptions import CannotBeBlankException, BlankBodyException
 from src.util.logger import get_logger
 
 log = get_logger()
@@ -6,7 +6,7 @@ log = get_logger()
 
 def validate_to_refresh_token(app_data):
     if app_data is None:
-        raise CannotBeBlankException("body")
+        raise BlankBodyException()
     if "client_id" not in app_data:
         raise CannotBeBlankException("client_id")
     if "client_secret" not in app_data:
@@ -26,6 +26,8 @@ def validate_to_refresh_token(app_data):
 
 
 def validate_to_access_token(app_data):
+    if app_data is None:
+        raise BlankBodyException()
     if "client_id" not in app_data:
         raise CannotBeBlankException("client_id")
     if "client_secret" not in app_data:
