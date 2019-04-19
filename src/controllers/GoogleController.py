@@ -22,6 +22,6 @@ class GoogleController:
 
     def generate_access_token(self, app_data: dict) -> Response:
         log.info(f"[GOOGLE CONTROLLER] Generation of access token with data: {app_data}")
-        json_response = self.__google_business.generate_refresh_token(app_data)
+        json_response = self.__google_business.generate_access_token(app_data)
         serialized_json_reponse = dumps(json_response)
         return Response(serialized_json_reponse, status=200, headers=JSON_RESPONSE_HEADER)
